@@ -26,4 +26,19 @@ object EqualityPlayground extends App {
 
   println(Equal(john, john))
   println(Equal(john, anotherJohn))
+
+  /*
+      Exercise - improve the Equal TC with an implicit conversion class
+      ===(anotherValue: T)
+      !==(anotherValue: T)
+     */
+
+  implicit class TypeSafeEquals[T](a: T) {
+    def ===(b: T)(implicit equality: Equal[T]): Boolean = equality.apply(a, b)
+
+    def !==(b: T)(implicit equality: Equal[T]): Boolean = !equality.apply(a, b)
+  }
+
+  println(john === anotherJohn)
+  println(john !== anotherJohn)
 }
