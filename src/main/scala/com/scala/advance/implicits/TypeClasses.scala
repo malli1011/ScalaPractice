@@ -30,7 +30,7 @@ object TypeClasses extends App {
 
   import java.util.Date
 
-  object DateSerializer extends HTMLSerializer[Date] {
+  implicit object DateSerializer extends HTMLSerializer[Date] {
     override def serialize(date: Date): String = s"<div>${date.toString()}</div>"
   }
 
@@ -52,5 +52,6 @@ object TypeClasses extends App {
 
   println(HTMLSerializer.serialize(100))
   println(HTMLSerializer.serialize(john))
+  println(HTMLSerializer.serialize(new Date()))
 
 }
